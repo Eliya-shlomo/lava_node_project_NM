@@ -1,7 +1,0 @@
-./chain_tracker.go
-./chain_tracker.pb.go
-./chain_tracker_service.go
-./config.go
-./errors.go
-./utils.go
-./wanted_block_data.go

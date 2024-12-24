@@ -1,5 +1,0 @@
-./query.go
-./query_info.go
-./query_list.go
-./query_params.go
-./tx.go

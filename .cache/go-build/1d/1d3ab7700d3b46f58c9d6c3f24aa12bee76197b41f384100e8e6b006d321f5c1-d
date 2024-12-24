@@ -1,8 +1,0 @@
-./cobra_common.go
-./collections.go
-./conf.go
-./endpoints.go
-./errors.go
-./return_errors.go
-./timeout.go
-./tx_parsing.go

@@ -1,6 +1,0 @@
-./ante.go
-./app.go
-./encoding.go
-./export.go
-./genesis.go
-./test_helper.go

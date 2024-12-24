@@ -1,8 +1,0 @@
-./broadcast.go
-./decode.go
-./encode.go
-./query.go
-./tips.go
-./tx_multisign.go
-./tx_sign.go
-./validate_sigs.go

@@ -1,9 +1,0 @@
-./query.go
-./query_developer.go
-./query_info.go
-./query_params.go
-./tx.go
-./tx_add_keys.go
-./tx_del_keys.go
-./tx_set_admin_policy.go
-./tx_set_subscription_policy.go

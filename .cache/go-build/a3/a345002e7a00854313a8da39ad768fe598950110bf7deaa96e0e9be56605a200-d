@@ -1,5 +1,0 @@
-./codec.go
-./genesis.go
-./genesis.pb.go
-./metrics.go
-./query.go

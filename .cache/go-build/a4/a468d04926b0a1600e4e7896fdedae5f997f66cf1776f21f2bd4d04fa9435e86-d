@@ -1,8 +1,0 @@
-./block.go
-./query.pb.go
-./query.pb.gw.go
-./service.go
-./status.go
-./types.go
-./types.pb.go
-./util.go

@@ -1,8 +1,0 @@
-./account.go
-./bech32_codec.go
-./genesis.go
-./grpc_query.go
-./keeper.go
-./migrations.go
-./msg_server.go
-./params.go

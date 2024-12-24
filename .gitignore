@@ -1,7 +1,20 @@
-id_rsa
-id_rsa.pub
+# Ignore SSH keys
+.ssh/
 *.pem
-.env
-*.log
-/data/
-*.db
+
+# Ignore shell history and config files
+.bash_history
+.bashrc
+.profile
+.bash_logout
+
+# Ignore cache and temporary files
+.cache/
+*.tmp
+
+# Ignore Lava-specific sensitive data
+.lava/
+
+# Ignore compressed files
+*.tar.gz
+*.zip

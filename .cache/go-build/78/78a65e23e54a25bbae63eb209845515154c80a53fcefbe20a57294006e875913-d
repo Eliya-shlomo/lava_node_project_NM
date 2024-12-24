@@ -1,6 +1,0 @@
-./freeze.go
-./relay_payment.go
-./simap.go
-./stake_provider.go
-./unfreeze.go
-./unstake_provider.go

@@ -1,9 +1,0 @@
-./doc.go
-./export.go
-./pruning.go
-./rollback.go
-./start.go
-./swagger.go
-./test_helpers.go
-./tm_cmds.go
-./util.go

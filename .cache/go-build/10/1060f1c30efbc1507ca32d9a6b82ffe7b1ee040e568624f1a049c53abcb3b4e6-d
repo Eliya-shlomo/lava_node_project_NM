@@ -1,8 +1,0 @@
-./direct_aux.go
-./ext.go
-./msgs.go
-./service.pb.go
-./service.pb.gw.go
-./tips.go
-./tx.pb.go
-./types.go

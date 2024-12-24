@@ -1,9 +1,0 @@
-./query.go
-./query_conflict_vote.go
-./query_consumer_conflicts.go
-./query_params.go
-./query_provider_conflicts.go
-./tx.go
-./tx_conflict_vote_commit.go
-./tx_conflict_vote_reveal.go
-./tx_detection.go

@@ -1,6 +1,0 @@
-./consumer_consistency.go
-./policies_map.go
-./relay_errors.go
-./rpcconsumer.go
-./rpcconsumer_server.go
-./testing.go

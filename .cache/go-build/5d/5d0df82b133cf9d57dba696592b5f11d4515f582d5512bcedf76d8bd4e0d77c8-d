@@ -1,5 +1,0 @@
-./endpoint.pb.go
-./key_stake_storage.go
-./keys.go
-./stake_entry.pb.go
-./stake_storage.pb.go

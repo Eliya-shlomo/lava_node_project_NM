@@ -1,8 +1,0 @@
-./account.go
-./events.go
-./genesis.go
-./grpc_query.go
-./handshake.go
-./keeper.go
-./params.go
-./relay.go

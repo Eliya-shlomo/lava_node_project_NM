@@ -1,5 +1,0 @@
-./genesis.go
-./handler.go
-./module.go
-./module_simulation.go
-./proposal_handler.go

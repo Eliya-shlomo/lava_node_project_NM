@@ -1,7 +1,0 @@
-./collect.go
-./core_genesis_cmd.go
-./genaccount.go
-./gentx.go
-./init.go
-./migrate.go
-./validate_genesis.go

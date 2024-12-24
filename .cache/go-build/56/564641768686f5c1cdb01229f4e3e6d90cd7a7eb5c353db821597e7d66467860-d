@@ -1,4 +1,0 @@
-./codec.go
-./registry.go
-./remote_grpc_reflection.go
-./remote_relayer.go

@@ -1,9 +1,0 @@
-./common.go
-./consumer_session_manager.go
-./consumer_types.go
-./errors.go
-./provider_session_manager.go
-./provider_types.go
-./reported_providers.go
-./router_key.go
-./single_provider_session.go

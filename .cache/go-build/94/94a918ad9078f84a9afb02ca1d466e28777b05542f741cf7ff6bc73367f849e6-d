@@ -1,5 +1,0 @@
-./add_project_keys.go
-./del_project_keys.go
-./set_admin_policy.go
-./set_subscription_policy.go
-./simap.go

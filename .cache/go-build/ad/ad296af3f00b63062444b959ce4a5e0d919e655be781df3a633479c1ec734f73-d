@@ -1,8 +1,0 @@
-./constants.go
-./consts.go
-./keys.go
-./query.pb.go
-./query.pb.gw.go
-./timer.go
-./timer.pb.go
-./types.go

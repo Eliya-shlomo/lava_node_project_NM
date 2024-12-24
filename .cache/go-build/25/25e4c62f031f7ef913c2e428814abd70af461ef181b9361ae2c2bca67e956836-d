@@ -1,9 +1,0 @@
-./address.go
-./coin.go
-./debug.go
-./lavalog.go
-./locks.go
-./logger_wrapper.go
-./serialize.go
-./time.go
-./uniqueIdentifier.go

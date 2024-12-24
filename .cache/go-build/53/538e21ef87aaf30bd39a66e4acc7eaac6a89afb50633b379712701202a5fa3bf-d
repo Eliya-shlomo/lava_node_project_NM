@@ -1,4 +1,0 @@
-./errors.go
-./finalization_consensus.go
-./request_builder.go
-./response_builder.go

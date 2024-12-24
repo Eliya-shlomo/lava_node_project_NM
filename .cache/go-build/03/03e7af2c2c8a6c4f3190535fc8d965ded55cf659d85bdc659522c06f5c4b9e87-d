@@ -1,4 +1,0 @@
-./glog.go
-./glog_file.go
-./glog_file_linux.go
-./glog_flags.go

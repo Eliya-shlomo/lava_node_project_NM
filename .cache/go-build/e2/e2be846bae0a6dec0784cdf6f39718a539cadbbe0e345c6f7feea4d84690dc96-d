@@ -1,9 +1,0 @@
-./bootid.go
-./docker.go
-./errors.go
-./hostname.go
-./hostname_linux.go
-./memtotal.go
-./memtotal_linux.go
-./usage.go
-./usage_posix.go
