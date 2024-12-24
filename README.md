@@ -1,158 +1,193 @@
-# Lava Testnet RPC Node Setup and Monitoring
+# Lava Node Setup and Monitoring
 
-This README documents the process of setting up a secure server, installing and running a Lava Testnet RPC node, configuring monitoring tools, and managing queries for effective monitoring.
+## Overview
+This project demonstrates the setup, secure configuration, and monitoring of a Lava Testnet RPC Node. It covers essential security practices, node installation, monitoring setup with Prometheus, Grafana, and Alertmanager, as well as queries to monitor the server and node performance.
 
 ---
 
-## **Securing the Server**
+## Server Security Configuration
 
-Before setting up the Lava node, the server was secured to ensure minimal exposure to external threats.
+### Steps Taken:
 
-### **Key Steps**
-
-1. **Creating a Dedicated User**:
+1. **Disable Root Access:**
    ```bash
-   adduser secure_user
-   usermod -aG sudo secure_user
-   ```
-2. **Disabling Root Login**:
-   Edited the `/etc/ssh/sshd_config` file:
-   ```bash
+   sudo nano /etc/ssh/sshd_config
    PermitRootLogin no
    ```
-   Restarted SSH:
+   Restart SSH:
    ```bash
-   systemctl restart ssh
+   sudo systemctl restart sshd
    ```
-3. **Enabling Firewall**:
+
+2. **Add New User:**
    ```bash
-   ufw allow OpenSSH
-   ufw enable
+   sudo adduser your_username
+   sudo usermod -aG sudo your_username
    ```
-4. **Restricting Access to Specific Ports**:
-   Allowed only necessary ports such as `26657`, `26660`, and `9090`.
+
+3. **Enable UFW Firewall:**
    ```bash
-   ufw allow 26657
-   ufw allow 26660
-   ufw allow 9090
+   sudo ufw allow OpenSSH
+   sudo ufw enable
+   ```
+
+4. **SSH Key Authentication:**
+   - Generate SSH keys:
+     ```bash
+     ssh-keygen
+     ```
+   - Copy public key to the server:
+     ```bash
+     ssh-copy-id your_username@server_ip
+     ```
+   - Disable password authentication:
+     ```bash
+     sudo nano /etc/ssh/sshd_config
+     PasswordAuthentication no
+     ```
+
+5. **Fail2Ban Installation:**
+   ```bash
+   sudo apt install fail2ban
+   sudo systemctl enable fail2ban --now
    ```
 
 ---
 
-## **Installing and Running Lava Node**
+## Lava Node Installation
 
-The Lava Testnet RPC node was installed following the official guidelines.
-
-### **Installation Steps**
-
-1. **Installing Dependencies**:
+1. **Download and Install Lava Node:**
    ```bash
-   sudo apt update && sudo apt upgrade -y
-   sudo apt install build-essential git curl -y
-   ```
-
-2. **Cloning Lava Repository**:
-   ```bash
-   git clone https://github.com/lavanet/lava
+   wget https://github.com/lavanet/lava/releases/download/vX.Y.Z/lava_X.Y.Z_Linux_x86_64.tar.gz
+   tar -xzvf lava_X.Y.Z_Linux_x86_64.tar.gz
    cd lava
-   make install
    ```
 
-3. **Setting Up the Node**:
-   - Initialized the node:
-     ```bash
-     lavad init "node_name" --chain-id lava-testnet-2
-     ```
-   - Downloaded the genesis file:
-     ```bash
-     curl -O <GENESIS_FILE_URL>
-     mv genesis.json ~/.lava/config/genesis.json
-     ```
-   - Configured peers and seeds in `~/.lava/config/config.toml`.
-
-4. **Starting the Node**:
+2. **Initialize Lava Node:**
    ```bash
-   lavad start
+   ./lavad init "your_node_name" --chain-id lava-testnet-2
+   ```
+
+3. **Download Genesis File:**
+   ```bash
+   wget -O ~/.lava/config/genesis.json https://github.com/lavanet/testnet/raw/main/genesis.json
+   ```
+
+4. **Configure Seed Nodes:**
+   Edit `~/.lava/config/config.toml` to include:
+   ```toml
+   persistent_peers = "peer_id@address:port"
+   ```
+
+5. **Start the Node:**
+   ```bash
+   ./lavad start
    ```
 
 ---
 
-## **Installing Monitoring Tools**
+## Monitoring Setup
 
-Prometheus, Grafana, and Node Exporter were installed to monitor node and server metrics.
-
-### **Installation Commands**
-
-1. **Prometheus**:
+### Prometheus
+1. **Download and Extract Prometheus:**
    ```bash
    wget https://github.com/prometheus/prometheus/releases/download/v2.47.0/prometheus-2.47.0.linux-amd64.tar.gz
-   tar -xvzf prometheus-2.47.0.linux-amd64.tar.gz
-   mv prometheus-2.47.0.linux-amd64 /usr/local/prometheus
+   tar -xzvf prometheus-2.47.0.linux-amd64.tar.gz
+   cd prometheus-2.47.0.linux-amd64
    ```
 
-2. **Node Exporter**:
+2. **Configure Prometheus:**
+   Edit `prometheus.yml`:
+   ```yaml
+   scrape_configs:
+     - job_name: 'lava_node'
+       static_configs:
+         - targets: ['localhost:26660']
+   ```
+
+3. **Run Prometheus:**
    ```bash
-   wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
-   tar -xvzf node_exporter-1.8.2.linux-amd64.tar.gz
-   mv node_exporter-1.8.2.linux-amd64 /usr/local/node_exporter
+   ./prometheus --config.file=prometheus.yml
    ```
 
-3. **Grafana**:
+### Grafana
+1. **Download and Extract Grafana:**
    ```bash
    wget https://dl.grafana.com/oss/release/grafana-10.0.0.linux-amd64.tar.gz
-   tar -xvzf grafana-10.0.0.linux-amd64.tar.gz
-   mv grafana-10.0.0 /usr/local/grafana
+   tar -xzvf grafana-10.0.0.linux-amd64.tar.gz
+   ```
+
+2. **Start Grafana:**
+   ```bash
+   cd grafana-10.0.0
+   ./bin/grafana-server
+   ```
+
+3. **Access Grafana:**
+   Navigate to `http://your_server_ip:3000` and set up data sources.
+
+### Alertmanager
+1. **Download and Extract Alertmanager:**
+   ```bash
+   wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
+   tar -xzvf alertmanager-0.27.0.linux-amd64.tar.gz
+   cd alertmanager-0.27.0.linux-amd64
+   ```
+
+2. **Configure Alertmanager:**
+   Edit `alertmanager.yml`:
+   ```yaml
+   global:
+     resolve_timeout: 5m
+   route:
+     receiver: 'email-alert'
+   receivers:
+     - name: 'email-alert'
+       email_configs:
+         - to: 'your_email@example.com'
+           from: 'alertmanager@example.com'
+           smarthost: 'smtp.example.com:587'
+           auth_username: 'alertmanager@example.com'
+           auth_password: 'your_password'
+   ```
+
+3. **Run Alertmanager:**
+   ```bash
+   ./alertmanager --config.file=alertmanager.yml
    ```
 
 ---
 
-## **Monitoring Queries**
+## Example Monitoring Queries
 
-### **Server Monitoring**
-
-Prometheus collects server metrics such as CPU usage, memory consumption, and disk I/O.
-
-#### **Example Queries**:
-
-1. **CPU Usage**:
-   ```promQL
-   100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+### Prometheus Queries
+1. **Server CPU Usage:**
+   ```promql
+   node_cpu_seconds_total
    ```
 
-2. **Memory Usage**:
-   ```promQL
-   node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100
+2. **Node Memory Usage:**
+   ```promql
+   node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes
    ```
 
-### **Node Monitoring**
-
-The Lava RPC node metrics were exposed via the `26660/metrics` endpoint.
-
-#### **Example Queries**:
-
-1. **Block Height**:
-   ```promQL
-   cometbft_consensus_latest_block_height{job="lava_node"}
+3. **Lava Node Metrics:**
+   ```promql
+   cometbft_consensus_height
    ```
 
-2. **Number of Peers**:
-   ```promQL
-   cometbft_p2p_peers{job="lava_node"}
-   ```
+### Grafana Visualizations
+- Use the Prometheus data source to create dashboards for CPU, memory, and Lava-specific metrics.
 
 ---
 
-## **General Guidelines**
-
-1. **Use Firewalls**:
-   Restrict access to the server and node to trusted IPs only.
-
-2. **Regular Updates**:
-   Keep the node, server software, and monitoring tools up-to-date.
-
-3. **Secure Data**:
-   Use `.gitignore` to prevent sensitive files like `.ssh` and `.config` from being uploaded to repositories.
+## General Guidelines
+- Ensure the server firewall (UFW) is properly configured to allow only necessary ports.
+- Regularly update and monitor node performance using Prometheus and Grafana dashboards.
+- Use Alertmanager for proactive issue notification.
+- Keep sensitive files excluded from repositories using `.gitignore`.
 
 ---
 
-For more details, refer to the official Lava documentation or the Prometheus/Grafana user guides.
+## Conclusion
+This documentation provides a comprehensive guide to setting up and monitoring a Lava Testnet RPC Node with best practices for server security and monitoring. By following these steps, you ensure a robust and scalable setup for blockchain node management.
