@@ -1,0 +1,7 @@
+./geo_req.go
+./pairing_score.go
+./pairing_slot.go
+./qos_req.go
+./score.go
+./score_req.go
+./stake_req.go

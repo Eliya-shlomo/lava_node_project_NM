@@ -1,0 +1,6 @@
+./downtime.pb.go
+./genesis.go
+./genesis.pb.go
+./params.go
+./query.pb.go
+./query.pb.gw.go

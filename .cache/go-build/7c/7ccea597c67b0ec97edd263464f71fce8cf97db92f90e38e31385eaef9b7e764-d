@@ -1,0 +1,5 @@
+./common.go
+./grpcMessage.go
+./jsonRPCMessage.go
+./restMessage.go
+./tendermintRPCMessage.go

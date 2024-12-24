@@ -1,0 +1,3 @@
+./endpoint.pb.go
+./stake_entry.pb.go
+./stake_storage.pb.go

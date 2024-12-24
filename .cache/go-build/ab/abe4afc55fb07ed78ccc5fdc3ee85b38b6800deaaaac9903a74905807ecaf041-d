@@ -1,0 +1,5 @@
+./args.go
+./flags.go
+./process.go
+./scanner.go
+./upgrade.go

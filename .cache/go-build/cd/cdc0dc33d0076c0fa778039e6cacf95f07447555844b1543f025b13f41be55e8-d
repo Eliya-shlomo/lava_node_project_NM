@@ -1,0 +1,10 @@
+./copy.go
+./copy_namedpipes.go
+./fileinfo_go1.16.go
+./options.go
+./permission_control.go
+./preserve_ltimes.go
+./preserve_owner.go
+./preserve_times.go
+./stat_times.go
+./test_setup.go

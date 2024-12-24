@@ -1,0 +1,7 @@
+./appdata.go
+./errors.go
+./headers.go
+./id.go
+./path_hash.go
+./synthetics.go
+./txndata.go

@@ -1,0 +1,6 @@
+./base64x.go
+./cpuid.go
+./faststr.go
+./native_amd64.go
+./native_subr_amd64.go
+./native_text_amd64.go

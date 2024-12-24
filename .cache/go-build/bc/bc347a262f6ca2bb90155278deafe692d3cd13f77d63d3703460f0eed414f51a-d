@@ -1,0 +1,8 @@
+./addresses.go
+./aws.go
+./azure.go
+./fqdn.go
+./gcp.go
+./pcf.go
+./provider.go
+./utilization.go

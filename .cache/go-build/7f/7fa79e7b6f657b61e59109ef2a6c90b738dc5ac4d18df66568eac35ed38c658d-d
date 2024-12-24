@@ -1,0 +1,12 @@
+./add_upgrade.go
+./batch_upgrade.go
+./config.go
+./help.go
+./init.go
+./main.go
+./prepare_upgrade.go
+./root.go
+./run.go
+./run_config.go
+./show_upgrade.go
+./version.go

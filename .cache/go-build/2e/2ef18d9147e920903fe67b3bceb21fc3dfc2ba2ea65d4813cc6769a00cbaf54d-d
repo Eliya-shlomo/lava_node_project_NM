@@ -1,0 +1,5 @@
+./grpc_query_all_indices.go
+./grpc_query_entry.go
+./grpc_query_store_keys.go
+./grpc_query_versions.go
+./keeper.go

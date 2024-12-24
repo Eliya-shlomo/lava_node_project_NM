@@ -1,0 +1,5 @@
+./query.go
+./query_all_indices.go
+./query_entry.go
+./query_store_keys.go
+./query_versions.go
