@@ -103,6 +103,12 @@ This project demonstrates the setup, secure configuration, and monitoring of a L
      - job_name: 'lava_node'
        static_configs:
          - targets: ['localhost:26660']
+      - job_name: 'alertmanager '
+       static_configs:
+         - targets: ['localhost:9093']
+      - job_name: 'node_exporter'
+       static_configs:
+         - targets: ['localhost:9100']
    ```
 
 3. **Run Prometheus:**
