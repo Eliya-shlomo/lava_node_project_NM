@@ -175,19 +175,3 @@ This project demonstrates the setup, secure configuration, and monitoring of a L
    ```promql
    cometbft_consensus_height
    ```
-
-### Grafana Visualizations
-- Use the Prometheus data source to create dashboards for CPU, memory, and Lava-specific metrics.
-
----
-
-## General Guidelines
-- Ensure the server firewall (UFW) is properly configured to allow only necessary ports.
-- Regularly update and monitor node performance using Prometheus and Grafana dashboards.
-- Use Alertmanager for proactive issue notification.
-- Keep sensitive files excluded from repositories using `.gitignore`.
-
----
-
-## Conclusion
-This documentation provides a comprehensive guide to setting up and monitoring a Lava Testnet RPC Node with best practices for server security and monitoring. By following these steps, you ensure a robust and scalable setup for blockchain node management.
